@@ -8,5 +8,6 @@
 import scrapy
 
 
-class SneakpeekcrawlerItem(scrapy.Item):
+class Sneaker(scrapy.Item):
     url = scrapy.Field()
+    name = scrapy.Field()

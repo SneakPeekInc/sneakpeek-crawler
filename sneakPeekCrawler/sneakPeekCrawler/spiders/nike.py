@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
-from sneakPeekCrawler.items import SneakpeekcrawlerItem
+from sneakPeekCrawler.items import Sneaker
 
 
 class NikeSpider(scrapy.Spider):
@@ -11,6 +11,6 @@ class NikeSpider(scrapy.Spider):
     def parse(self, response):
         image_doms = response.css('div.exp-gridwall-content.clearfix')
         for image_dom in image_doms:
-            item = SneakpeekcrawlerItem()
+            item = Sneaker()
             item['url'] = image_dom.css('img::attr(src)').extract()
             yield item
