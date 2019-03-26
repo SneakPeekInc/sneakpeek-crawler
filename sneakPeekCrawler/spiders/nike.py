@@ -10,17 +10,10 @@ class NikeSpider(scrapy.Spider):
 
 
     def parse(self, response):
-        # テスト用コード
-        returnCounter = 0
         next_urls = response.css('div.grid-item-image')
         for next_url in next_urls:
             url = next_url.css('a::attr(href)').extract_first()
             yield scrapy.Request(url,self.parse_items)
-
-            # テスト用コード ループ5回でreturn
-            returnCounter += 1
-            if returnCounter >= 5:
-                return
 
 
     def parse_items(self, response):

@@ -105,3 +105,7 @@ venv.bak/
 
 # DS_Store
 .DS_Store
+
+# 一時ファイル
+nike.csv
+nike.json
