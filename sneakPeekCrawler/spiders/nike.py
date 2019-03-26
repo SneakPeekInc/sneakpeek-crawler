@@ -5,12 +5,27 @@ from sneakPeekCrawler.items import Sneaker
 
 class NikeSpider(scrapy.Spider):
     name = 'nike'
-    allowed_domains = ['store.nike.com/jp/ja_jp/pw']
-    start_urls = ['https://store.nike.com/jp/ja_jp/pw//']
+    allowed_domains = ['nike.com']
+    start_urls = ['https://store.nike.com/jp/ja_jp/pw/メンズ-ライフスタイル-シューズ/7puZoneZoi3?ipp=120']
+
 
     def parse(self, response):
-        image_doms = response.css('div.exp-gridwall-content.clearfix')
-        for image_dom in image_doms:
-            item = Sneaker()
-            item['url'] = image_dom.css('img::attr(src)').extract()
-            yield item
+        # テスト用コード
+        returnCounter = 0
+        next_urls = response.css('div.grid-item-image')
+        for next_url in next_urls:
+            url = next_url.css('a::attr(href)').extract_first()
+            yield scrapy.Request(url,self.parse_items)
+
+            # テスト用コード ループ5回でreturn
+            returnCounter += 1
+            if returnCounter >= 5:
+                return
+
+
+    def parse_items(self, response):
+        item = Sneaker()
+        item['name'] = response.css('h1#pdp_product_title.fs26-sm.fs28-lg.css-33lwh4').extract_first()
+        item['price'] = response.css('div.mb-1-sm.text-color-black').extract_first()
+        item['image_urls'] = response.css('img.css-viwop1.u-full-width.u-full-height.css-m5dkrx::attr(src)').extract()
+        yield item
