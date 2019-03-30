@@ -20,7 +20,7 @@ class NikeSpider(scrapy.Spider):
 
             counter += 1
 
-            if counter == 5:
+            if counter == 2:
                 return
 
     def parse_items(self, response):
