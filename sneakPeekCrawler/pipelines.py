@@ -17,28 +17,25 @@ class Pipeline(object):
         client = storage.Client()
         bucket = client.get_bucket('sneakers')
 
+        #バイナリデータの一時保存先
         dst_path = './datastore.jpg'
+
         image_url= urllib.parse.quote(item['image_urls'][0], safe='/:')
 
         try:
             data = urllib.request.urlopen(image_url).read()
             with open(dst_path, mode="wb") as f:
+                #バイナリデータの書き込み
                 f.write(data)
 
                 blob = bucket.blob('nike/' + item['name'])
                 blob.upload_from_filename(filename='./datastore.jpg')
                 print(blob.public_url)
 
+                #バイナリデータの削除
                 os.remove(dst_path)
 
         except urllib.error.URLError as e:
             print(e)
 
-        # #ファイルをアップロード
-
-        # print('ここから')
-        # print(item['name'])
-        # print(item['price'])
-        # print(item['image_urls'])
-        # print('ここまで')
         return item
