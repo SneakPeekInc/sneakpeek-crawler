@@ -22,7 +22,7 @@ class SneakpeekcrawlerPipeline(object):
 
     def open_spider(self, spider):
         self.client = firestore.Client.from_service_account_json(
-            '秘密鍵のパス')
+            '/Users/kanamori/dev/src/github.com/SneakPeek-crawler/sneakPeekCrawler/sneakpeek-cf5edfeaa9f4.json')
         self.db = self.client.collection(self.collection_name)
 
     def process_item(self, item, spider):

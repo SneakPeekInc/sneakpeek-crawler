@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
+import os
 import scrapy
 from sneakPeekCrawler.items import Sneaker
-
 
 class NewBalanceSpider(scrapy.Spider):
     name = 'newbalance'
     allowed_domains = ['newbalance.jp']
-    start_urls = [
-        'https://shop.newbalance.jp/shop/goods/search.aspx?filtercode5=M&filtercode6=100&min_price=&max_price=&tree1=&keyword=']
+    start_urls = ['https://shop.newbalance.jp/shop/goods/search.aspx?filtercode5=M&filtercode6=100&min_price=&max_price=&tree1=&keyword=']
 
     def parse(self, response):
 
-        counter = 0  # テスト用
+        os.environ['ENV'] = 'dev'
+        counter = 0
 
         next_urls = response.css('div.StyleP_Item_.item')
 
@@ -19,10 +19,11 @@ class NewBalanceSpider(scrapy.Spider):
             url = next_url.css('a::attr(href)').extract_first()
             yield scrapy.Request(response.urljoin(url), self.parse_items)
 
-            counter += 1  # テスト用
+            if os.environ['ENV'] == 'dev':
+                counter += 1
 
-            if counter == 5:  # テスト用
-                return  # テスト用
+                if counter == 5:
+                    return
 
     def parse_items(self, response):
 
