@@ -109,3 +109,6 @@ venv.bak/
 # 一時ファイル
 nike.csv
 nike.json
+
+# 秘密鍵
+sneakpeek-cf5edfeaa9f4.json
