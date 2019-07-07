@@ -1,7 +1,3 @@
 version: 2
 jobs:
   build:
-    steps:
-    test:
-      override:
-        - echo "no unit test."
