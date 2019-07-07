@@ -2,4 +2,3 @@ version: 2
 jobs:
   build:
     steps:
-      - run: make test
