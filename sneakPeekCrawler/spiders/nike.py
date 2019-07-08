@@ -11,20 +11,14 @@ class NikeSpider(scrapy.Spider):
     def parse(self, response):
 
         os.environ['ENV'] = 'dev'
-        if os.environ['ENV'] == 'dev':
-            counter = 0
 
         next_urls = response.css('div.grid-item-image')
 
-        for next_url in next_urls:
+        for n, next_url in enumerate(next_urls):
             url = next_url.css('a::attr(href)').extract_first()
             yield scrapy.Request(url,self.parse_items)
 
-            if os.environ['ENV'] == 'dev':
-                counter += 1
-
-                if counter == 5:
-                    return
+            if os.environ['ENV'] == 'dev' and n > 5: return
 
     def parse_items(self, response):
 
