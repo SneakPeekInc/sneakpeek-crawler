@@ -18,7 +18,7 @@ class NikeSpider(scrapy.Spider):
             url = next_url.css('a::attr(href)').extract_first()
             yield scrapy.Request(url,self.parse_items)
 
-            if os.environ['ENV'] == 'dev' and n > 5: return
+            if os.environ['ENV'] == 'dev' and n > 3: return
 
     def parse_items(self, response):
 
@@ -37,7 +37,7 @@ class NikeSpider(scrapy.Spider):
         item = Sneaker()
         item['name'] = response.xpath(NAME_XPATH).extract_first()
         item['price'] = string_price_format_number(response.xpath(PRICE_XPATH).extract_first())
-        item['image_urls'] = response.xpath(IMAGE_URLS_XPATH).extract()
+        item['image_urls'] = response.xpath(IMAGE_URLS_XPATH).extract＿first()
 
         yield item
 
