@@ -10,8 +10,6 @@ class NikeSpider(scrapy.Spider):
 
     def parse(self, response):
 
-        os.environ['ENV'] = 'dev'
-
         next_urls = response.css('div.grid-item-image')
 
         for n, next_url in enumerate(next_urls):

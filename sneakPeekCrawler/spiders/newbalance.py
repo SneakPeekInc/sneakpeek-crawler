@@ -10,8 +10,6 @@ class NewBalanceSpider(scrapy.Spider):
 
     def parse(self, response):
 
-        os.environ['ENV'] = 'dev'
-
         next_urls = response.css('div.StyleP_Item_.item')
 
         for n, next_url in enumerate(next_urls):
