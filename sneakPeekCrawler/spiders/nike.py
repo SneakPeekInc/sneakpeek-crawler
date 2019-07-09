@@ -1,5 +1,6 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-z
 import scrapy
+from .. import utils
 from sneakPeekCrawler.items import Sneaker
 
 class NikeSpider(scrapy.Spider):
@@ -9,18 +10,13 @@ class NikeSpider(scrapy.Spider):
 
     def parse(self, response):
 
-        counter = 0     #テスト用
-
         next_urls = response.css('div.grid-item-image')
 
-        for next_url in next_urls:
+        for n, next_url in enumerate(next_urls):
             url = next_url.css('a::attr(href)').extract_first()
             yield scrapy.Request(url,self.parse_items)
 
-            counter += 1  # テスト用
-
-            if counter == 5:  # テスト用
-                return  # テスト用
+            if utils.isDevelopment() and n > 3: return
 
     def parse_items(self, response):
 
@@ -39,7 +35,7 @@ class NikeSpider(scrapy.Spider):
         item = Sneaker()
         item['name'] = response.xpath(NAME_XPATH).extract_first()
         item['price'] = string_price_format_number(response.xpath(PRICE_XPATH).extract_first())
-        item['image_urls'] = response.xpath(IMAGE_URLS_XPATH).extract()
+        item['image_urls'] = response.xpath(IMAGE_URLS_XPATH).extract＿first()
 
         yield item
 

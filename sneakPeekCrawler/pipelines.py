@@ -5,6 +5,7 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
+import os
 from google.cloud import firestore
 
 class SneakpeekcrawlerPipeline(object):
@@ -22,7 +23,7 @@ class SneakpeekcrawlerPipeline(object):
 
     def open_spider(self, spider):
         self.client = firestore.Client.from_service_account_json(
-            '秘密鍵のパス')
+           os.environ['SERVICE_ACCOUNT'] )
         self.db = self.client.collection(self.collection_name)
 
     def process_item(self, item, spider):
