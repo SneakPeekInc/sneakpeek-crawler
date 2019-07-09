@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import os
 import scrapy
+from .. import utils
 from sneakPeekCrawler.items import Sneaker
 
 class NewBalanceSpider(scrapy.Spider):
@@ -16,7 +16,7 @@ class NewBalanceSpider(scrapy.Spider):
             url = next_url.css('a::attr(href)').extract_first()
             yield scrapy.Request(response.urljoin(url), self.parse_items)
 
-            if os.environ['ENV'] == 'dev' and n > 3: return
+            if utils.isDevelopment() and n > 3: return
 
     def parse_items(self, response):
 
