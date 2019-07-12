@@ -16,7 +16,7 @@ class NikeSpider(scrapy.Spider):
             url = next_url.css('a::attr(href)').extract_first()
             yield scrapy.Request(url,self.parse_items)
 
-            if utils.isDevelopment() and n > 3: return
+            if utils.isDevelopment() and n > 1: return
 
     def parse_items(self, response):
 

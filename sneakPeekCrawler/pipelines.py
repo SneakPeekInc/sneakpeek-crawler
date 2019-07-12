@@ -6,6 +6,7 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 import os
+from . import utils
 from google.cloud import firestore
 
 class SneakpeekcrawlerPipeline(object):
@@ -27,5 +28,7 @@ class SneakpeekcrawlerPipeline(object):
         self.db = self.client.collection(self.collection_name)
 
     def process_item(self, item, spider):
-        self.db.add(dict(item))
+        result = self.db.add(dict(item))
+        if utils.isDevelopment():
+            self.db.document(result[1].id).delete()
         return item
