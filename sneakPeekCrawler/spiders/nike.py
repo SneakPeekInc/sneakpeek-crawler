@@ -10,11 +10,11 @@ class NikeSpider(scrapy.Spider):
 
     def parse(self, response):
 
-        next_urls = response.css('div.grid-item-image')
+        next_urls = response.css('div.product-card__body')
 
         for n, next_url in enumerate(next_urls):
             url = next_url.css('a::attr(href)').extract_first()
-            yield scrapy.Request(url,self.parse_items)
+            yield scrapy.Request(response.urljoin(url), self.parse_items)
 
             if utils.isDevelopment() and n > 1: return
 
