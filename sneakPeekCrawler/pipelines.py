@@ -10,8 +10,6 @@ from . import utils
 from google.cloud import firestore
 
 class SneakpeekcrawlerPipeline(object):
-    def process_item(self, item, spider):
-        return item
 
     def __init__(self, collection_name):
         self.collection_name = 'sneakers'
