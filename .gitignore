@@ -24,7 +24,6 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
-google-cloud-sdk/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -116,3 +115,6 @@ sneakpeek-cf5edfeaa9f4.json
 
 # direnv
 .envrc
+
+# GAE
+app.yaml

@@ -1,5 +1,6 @@
 import os
 import sys
+from sneakPeekCrawler import utils
 from flask import Flask
 app = Flask(__name__)
 
@@ -7,8 +8,8 @@ app = Flask(__name__)
 @app.route('/')
 def main():
     os.chdir("sneakPeekCrawler")
-    os.system("scrapy crawl nike")
-    os.system("scrapy crawl newbalance")
+    for brand in utils.brandsInfo():
+        os.system("scrapy crawl " + brand)
     os.chdir("..")
     return "ok"
 
