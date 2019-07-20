@@ -8,10 +8,10 @@ app = Flask(__name__)
 @app.route('/')
 def main():
     os.chdir("sneakPeekCrawler")
-    for brand in utils.brandsInfo():
+    for brand in utils.getBrands():
         os.system("scrapy crawl " + brand)
     os.chdir("..")
-    return "ok"
+    return "done"
 
 
 if __name__ == '__main__':

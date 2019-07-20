@@ -3,5 +3,5 @@ import os
 def isDevelopment():
     return os.environ['ENV'] == 'development'
 
-def brandsInfo():
+def getBrands():
     return ['nike', 'newbalance']

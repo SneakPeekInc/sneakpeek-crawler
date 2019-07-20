@@ -30,3 +30,4 @@ class SneakpeekcrawlerPipeline(object):
         if utils.isDevelopment():
             self.db.document(result[1].id).delete()
         return item
+
