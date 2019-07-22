@@ -28,7 +28,7 @@ class SneakpeekcrawlerPipeline(object):
     def process_item(self, item, spider):
         records = list(self.db.where('image_urls', '==', dict(item)[
             "image_urls"]).get())
-        if not bool(records):
+        if not records:
             result = self.db.add(dict(item))
             if utils.isDevelopment():
                 self.db.document(result[1].id).delete()
