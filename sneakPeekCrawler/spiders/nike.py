@@ -38,4 +38,3 @@ class NikeSpider(scrapy.Spider):
         item['image_urls'] = response.xpath(IMAGE_URLS_XPATH).extract＿first()
 
         yield item
-
