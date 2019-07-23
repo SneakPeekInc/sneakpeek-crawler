@@ -106,9 +106,10 @@ venv.bak/
 # DS_Store
 .DS_Store
 
-# 一時ファイル
-nike.csv
-nike.json
+# temp
+*.csv
+*.json
 
-# 秘密鍵
-sneakpeek-cf5edfeaa9f4.json
+# credentials
+credentials/*.js
+credentials/*.json
