@@ -26,8 +26,10 @@ class SneakpeekcrawlerPipeline(object):
         self.db = self.client.collection(self.collection_name)
 
     def process_item(self, item, spider):
-        result = self.db.add(dict(item))
-        if utils.isDevelopment():
-            self.db.document(result[1].id).delete()
+        records = list(self.db.where('image_urls', '==', dict(item)[
+            "image_urls"]).get())
+        if not records:
+            result = self.db.add(dict(item))
+            if utils.isDevelopment():
+                self.db.document(result[1].id).delete()
         return item
-
