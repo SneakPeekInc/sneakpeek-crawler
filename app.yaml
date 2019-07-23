@@ -2,4 +2,4 @@ runtime: python37
 
 env_variables:
   ENV: production
-  SERVICE_ACCOUNT: sneakpeek-cf5edfeaa9f4.json
+  SERVICE_ACCOUNT: credentials/sneakpeek-bcb87b0191b5.json
