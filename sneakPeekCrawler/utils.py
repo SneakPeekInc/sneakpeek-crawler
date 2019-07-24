@@ -8,7 +8,7 @@ def get_brands():
 
 def crawling(brand):
     os.chdir("sneakPeekCrawler")
-    os.system("scrapy crawl" + brand)
+    os.system("scrapy crawl " + brand)
     os.chdir("..")
     return "done"
 
