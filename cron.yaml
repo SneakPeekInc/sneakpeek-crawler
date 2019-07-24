@@ -1,0 +1,10 @@
+cron:
+    - description: "daily crawling nike"
+      url: /nike
+      schedule: every 1 hours
+      timezone: Asia/Tokyo
+    - description: "daily crawling newbalance"
+      url: /newbalance
+      schedule: every 1 hours
+      timezone: Asia/Tokyo
+
