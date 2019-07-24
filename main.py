@@ -5,13 +5,14 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route('/')
-def main():
-    os.chdir("sneakPeekCrawler")
-    for brand in utils.getBrands():
-        os.system("scrapy crawl " + brand)
-    os.chdir("..")
-    return "done"
+@app.route('/nike', methods=['GET'])
+def nike_crawl():
+    return utils.crawling("nike")
+
+
+@app.route('/newbalance', methods=['GET'])
+def newbalance_crawl():
+    return utils.crawling("newbalance")
 
 
 if __name__ == '__main__':

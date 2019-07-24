@@ -1,7 +1,14 @@
 import os
 
-def isDevelopment():
+def is_development():
     return os.environ['ENV'] == 'development'
 
-def getBrands():
+def get_brands():
     return ['nike', 'newbalance']
+
+def crawling(brand):
+    os.chdir("sneakPeekCrawler")
+    os.system("scrapy crawl " + brand)
+    os.chdir("..")
+    return "done"
+
