@@ -6,19 +6,13 @@ app = Flask(__name__)
 
 
 @app.route('/nike', methods=['GET'])
-def nikeCrawl():
-    os.chdir("sneakPeekCrawler")
-    os.system("scrapy crawl nike")
-    os.chdir("..")
-    return "done"
+def nike_crawl():
+    return utils.crawling("nike")
 
 
 @app.route('/newbalance', methods=['GET'])
-def newbalanceCrawl():
-    os.chdir("sneakPeekCrawler")
-    os.system("scrapy crawl newbalance")
-    os.chdir("..")
-    return "done"
+def newbalance_crawl():
+    return utils.crawling("newbalance")
 
 
 if __name__ == '__main__':

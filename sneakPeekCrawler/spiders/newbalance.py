@@ -16,7 +16,7 @@ class NewBalanceSpider(scrapy.Spider):
             url = next_url.css('a::attr(href)').extract_first()
             yield scrapy.Request(response.urljoin(url), self.parse_items)
 
-            if utils.isDevelopment() and n > 1: return
+            if utils.is_development() and n > 1: return
 
     def parse_items(self, response):
 
