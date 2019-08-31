@@ -22,7 +22,7 @@ class NikeSpider(scrapy.Spider):
 
         NAME_XPATH = '//h1[@id="pdp_product_title"]/text()'
         PRICE_XPATH = '//div[@class="css-i260wg"]/text()'
-        IMAGE_URLS_XPATH = "//img[contains(@src, 'https://c.static-nike.com/a/images/t_PDP_1280')]/@src"
+        IMAGE_URL_XPATH = "//img[contains(@src, 'https://c.static-nike.com/a/images/t_PDP_1280')]/@src"
 
         def string_price_format_number(price):
 
@@ -35,6 +35,6 @@ class NikeSpider(scrapy.Spider):
         item = Sneaker()
         item['name'] = response.xpath(NAME_XPATH).extract_first()
         item['price'] = string_price_format_number(response.xpath(PRICE_XPATH).extract_first())
-        item['image_urls'] = response.xpath(IMAGE_URLS_XPATH).extract＿first()
+        item['image_url'] = response.xpath(IMAGE_URL_XPATH).extract＿first()
 
         yield item

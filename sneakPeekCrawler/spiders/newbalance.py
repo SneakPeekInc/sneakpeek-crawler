@@ -22,7 +22,7 @@ class NewBalanceSpider(scrapy.Spider):
 
         NAME_XPATH = '//div[@class="main"]/h3/text()'
         PRICE_XPATH = '//div[@class="main"]/p[@class="price"]/span/text()'
-        IMAGE_URLS_XPATH = "//a[@class='active']/img/@src"
+        IMAGE_URL_XPATH = "//a[@class='active']/img/@src"
 
         def string_price_format_number(price):
             price = price.translate(str.maketrans(
@@ -41,7 +41,7 @@ class NewBalanceSpider(scrapy.Spider):
         item['name'] = response.xpath(NAME_XPATH).extract_first()
         item['price'] = string_price_format_number(
             response.xpath(PRICE_XPATH).extract_first())
-        item['image_urls'] = image_url_format(
-            response.xpath(IMAGE_URLS_XPATH).extract_first())
+        item['image_url'] = image_url_format(
+            response.xpath(IMAGE_URL_XPATH).extract_first())
 
         yield item
