@@ -11,5 +11,5 @@ import scrapy
 class Sneaker(scrapy.Item):
     name = scrapy.Field()
     price = scrapy.Field()
-    image_urls = scrapy.Field()
+    image_url = scrapy.Field()
 
