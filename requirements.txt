@@ -1,4 +1,4 @@
-Flask==0.12.2
+Flask==1.0
 scrapy==1.6.0
 google-cloud-firestore
 google-api-python-client
