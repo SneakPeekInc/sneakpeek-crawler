@@ -30,6 +30,6 @@ class SneakpeekcrawlerPipeline(object):
             "image_urls"]).get())
         if not records:
             result = self.db.add(dict(item))
-            if utils.isDevelopment():
+            if utils.is_development():
                 self.db.document(result[1].id).delete()
         return item
