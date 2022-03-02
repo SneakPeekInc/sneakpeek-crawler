@@ -1,4 +1,4 @@
 Flask==1.0
-scrapy==1.6.0
+scrapy==1.8.2
 google-cloud-firestore
 google-api-python-client
